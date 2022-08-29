@@ -1,0 +1,325 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en"> 
+	<head>
+		<title>{{ resume.first_name }} - Curriculum Vitae</title>
+		
+		<!-- Meta -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+
+		<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+
+	</head> 
+
+	<style>
+
+		* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		}
+		html {
+		height: 100%;  
+		}
+
+		body {
+		min-height: 100%;  
+		background: #eee;
+		font-family: 'Lato', sans-serif;
+		font-weight: 400;
+		color: #222;
+		font-size: 14px;
+		line-height: 26px;
+		padding-bottom: 50px;
+		}
+
+		.container {
+		max-width: 700px;   
+		background: #fff;
+		margin: 0px auto 0px; 
+		box-shadow: 1px 1px 2px #DAD7D7;
+		border-radius: 3px;  
+		padding: 40px;
+		margin-top: 50px;
+		}
+
+		.header {
+		margin-bottom: 30px;
+		}
+		
+		.full-name {
+			font-size: 40px;
+			text-transform: uppercase;
+			margin-bottom: 5px;
+		}
+		
+		.first-name {
+			font-weight: 700;
+		}
+
+		.last-name {
+			font-weight: 300;
+		}
+
+		.contact-info {
+			margin-bottom: 20px;
+		}
+
+		.email ,
+		.phone {
+			color: #54AFE4;
+			font-weight: bold;
+		} 
+
+		.separator {
+			height: 10px;
+			display: inline-block;
+			border-left: 2px solid #999;
+			margin: 0px 10px;
+		}
+
+		.position {
+			font-weight: bold;
+			display: inline-block;
+			margin-right: 10px;
+			text-decoration: underline;
+		}
+
+		.details {
+			line-height: 20px;
+		}
+
+		.section {
+			margin-bottom: 40px;  
+		}
+
+		.section:last-of-type {
+			margin-bottom: 0px;  
+		}
+
+		.section__title {
+			letter-spacing: 2px;
+			color: #54AFE4;
+			font-weight: bold;
+			margin-bottom: 10px;
+			text-transform: uppercase;
+		}
+
+		.section__list-item {
+			margin-bottom: 40px;
+		}
+
+		.section__list-item:last-of-type {
+			margin-bottom: 0;
+		}
+
+		.left ,
+		.right {
+			vertical-align: top;
+			display: inline-block;
+			
+		}
+
+		.left {
+			width: 60%;    
+		}
+
+		.right {
+			text-align: left;
+			width: 39%;  
+				
+		}
+
+		.name {
+			font-weight: bold;
+		}
+
+		a {
+			text-decoration: none;
+			color: #000;
+			font-style: italic;
+		}
+
+		a:hover {
+			text-decoration: underline;
+			color: #000;
+		}
+
+		/* .skills {
+
+		} */
+
+		.skills__item {
+			margin-bottom: 10px;  
+		}
+
+		/* .skills__item .right {
+			input {
+				display: none;
+			}
+		} */
+
+		.skills_interest{
+			display: flex;
+			justify-content: space-between;
+		}
+
+		ul {
+			list-style: none;
+		}
+		
+		h4 {
+			font-size: 14px;
+		}
+
+		label {
+			display: inline-block;  
+			width: 20px;
+			height: 20px;
+			background: #C3DEF3;
+			border-radius: 20px;
+			margin-right: 3px;
+		}
+
+		input:checked + label {
+			background: #79A9CE;
+		}
+
+
+
+	</style>
+
+	<body>
+
+		<div class="container">
+			<div class="header">
+				<div class="full-name">
+				<span class="first-name">{{resume.first_name}}</span>
+				<span class="last-name">{{resume.last_name}}</span>
+				</div>
+				<div class="contact-info">
+				<span class="email">Email: </span>
+				<span class="email-val">{{resume.email}}</span>
+				<span class="separator"></span>
+				<span class="phone">Phone: </span>
+				<span class="phone-val">{{resume.phone_number}}</span>
+				</div>
+			</div>
+
+		<!-- <div class="about">
+		<span class="position">{{resume.job_title}}</span>
+		</div> -->
+			<div class="section">
+				<div class="section__title">Professional Summary</div>
+				<section class="desc">
+					{{resume.professional_summary}}
+				</section>
+			</div>
+		
+			
+			<div class="details">
+				{% if work_history %}
+				<div class="section">
+					<div class="section__title">Work History</div>
+					<div class="section__list">
+						{% for work in work_history %}
+						<div class="section__list-item">
+							<div class="left">
+								<div class="name">{{work.employer}}</div>
+								<div class="addr">{{work.city}}, {{work.county}}</div>
+								<div class="duration">{{work.start_date}} - {{work.end_date}}</div>
+							</div>
+							<div class="right">
+								<div class="name">{{work.role}}</div>
+								<div class="desc">{{work.job_description}}</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+				{% endif %}
+				{% if education %}
+				<div class="section">
+					<div class="section__title">Education</div>
+					<div class="section__list">
+						{% for edu in education %}
+						<div class="section__list-item">
+							<div class="left">
+								<div class="name">{{edu.school_name}}</div>
+								<div class="addr">{{edu.school_location_city}}, {{edu.school_location_country}}</div>
+								<div class="duration">{{edu.start_date}} - {{edu.end_date}}</div>
+							</div>
+							<div class="right">
+								<div class="name">{{edu.degree}}</div>
+								<div class="desc">{{edu.description}}</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+				{% endif %}
+				{% if certification %}
+				<div class="section">
+					<div class="section__title">Licenses & Certifications </div>
+					<div class="section__list">
+						{% for cert in certification %}
+						<div class="section__list-item">
+							<div class="left">
+								<div class="name">{{cert.name}}</div>
+								<div class="addr">{{cert.issuing_organization}}</div>
+								<div class="duration">{{cert.issue_date}} . No Expiration Date</div>
+							</div>
+							<!-- <div class="right">
+								<div class="name">{{edu.degree}}</div>
+								<div class="desc">{{edu.description}}</div>
+							</div> -->
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+				{% endif %}
+				{% if project %}
+				<div class="section">
+					<div class="section__title">Projects</div>					
+					<div class="section__list">
+						{% for project in project %}
+						<div class="section__list-item">
+							<div class="name">{{project.name}}</div>
+							<div class="text">{{project.description}}</div>
+						</div>	
+						{% endfor %}					
+					</div>					
+				</div>
+				{% endif %}
+			
+
+			<div class="section">
+				<div class="skills_interest">
+					<div class="skills">
+						<ul>
+							<li><h4 class="section__title">SKILLS</h4></li>
+							<li>Python</li>
+							<li>Django</li>
+						</ul>
+					</div>
+							
+					<div class="interest">
+						<ul>
+							<li><h4 class="section__title">INTERESTS</h4></li>
+							<li>Music</li>
+							<li>Football</li>
+						</ul>
+					</div>
+				</div> 
+			</div>
+			<div class="name">
+				<p>References available upon request.</p>
+			</div>
+		</div>
+		
+	</body>
+</html> 
+
