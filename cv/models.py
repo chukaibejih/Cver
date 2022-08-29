@@ -1,6 +1,3 @@
-from pyexpat import model
-from tkinter import CASCADE
-from unittest import mock
 from django.db import models
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
