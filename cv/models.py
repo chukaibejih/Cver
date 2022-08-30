@@ -1,7 +1,7 @@
 from django.db import models
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
-from django.contrib.auth.models import User
+from account.models import CustomUser
 
 
 class ResumeTemplate(models.Model):
@@ -28,7 +28,7 @@ class ResumeTemplate(models.Model):
 class Resume(models.Model):
     # Resume model
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='resumes')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='resumes')
     job_title = models.CharField(max_length=200)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
@@ -69,7 +69,7 @@ class Education(models.Model):
     school_location_city = models.CharField(max_length=200)
     school_location_country = CountryField(blank_label='(select country)', default=False) 
     degree = models.CharField(max_length=200)
-    description = models.TextField(default=False)
+    description = models.TextField()
     start_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
     currently_attending_here = models.BooleanField(default=False, blank=True)

@@ -40,12 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # local app
+    'account',
     'cv',
 
     # 3rd party app
     'django_countries',
     'phonenumber_field',
     'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +79,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'CVer.wsgi.application'
+
+REST_FRAMEWORK = {
+    
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+    
+}
+
+AUTH_USER_MODEL = 'account.CustomUser'
 
 
 # Database
