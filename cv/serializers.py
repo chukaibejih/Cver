@@ -5,42 +5,42 @@ from cv import models
 class ResumeTemplateSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ResumeTemplate
-        Fields = ["name", "template_name", "id"]
+        fields = ["name", "template_image", "id"]
 
 
 class WorkHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.WorkHistory
-        exclude = "resume"
+        exclude = ["resume"]
 
 
 class EducationSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Education
-        exclude = "resume"
+        exclude = ["resume"]
 
 
 class CertificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Certification
-        exclude = "resume"
+        exclude = ["resume"]
 
 
 class SkillSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Skill
-        exclude = "resume"
+        exclude = ["resume"]
 
 class SocialLinkSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.SocialLink
-        exclude = "resume"
+        exclude = ["resume"]
 
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Project
-        exclude = "resume"
+        exclude = ["resume"]
 
 
 class ResumeSerializer(serializers.ModelSerializer):

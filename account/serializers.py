@@ -33,7 +33,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ('id', 'first_name', 'last_name', 'location', 'phone_number')
+        fields = ('id', 'first_name', 'last_name')
 
     def create(self, validated_data):
         user = UserProfile.objects.create(**validated_data)
