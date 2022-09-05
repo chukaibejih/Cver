@@ -7,6 +7,8 @@ django-countries==7.3.2
 django-phonenumber-field==6.3.0
 django-renderpdf==3.0.1
 djangorestframework==3.13.1
+djangorestframework-simplejwt
+drf-yasg==1.20.0
 fonttools==4.37.1
 html5lib==1.1
 phonenumbers==8.12.54
