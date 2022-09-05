@@ -38,5 +38,5 @@ urlpatterns = [
     path('accounts/', include('account.urls')),
     path('admin/', admin.site.urls),
     path('', schema_view.with_ui('swagger', cache_timeout=0), name="swagger-schema"),
-    path('api', include('rest_framework.urls', namespace='rest_framework'))    
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
