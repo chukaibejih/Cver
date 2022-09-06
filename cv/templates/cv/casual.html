@@ -270,7 +270,13 @@
 							<div class="left">
 								<div class="name">{{cert.name}}</div>
 								<div class="addr">{{cert.issuing_organization}}</div>
-								<div class="duration">{{cert.issue_date}} . No Expiration Date</div>
+								<div class="duration">{{cert.issue_date }} 
+									{% if cert.does_not_expire is True %}
+										. No Expiration Date
+									{% else %}
+										- {{cert.expiration_date}}
+									{% endif %}
+									</div>
 							</div>
 							<!-- <div class="right">
 								<div class="name">{{edu.degree}}</div>
@@ -295,25 +301,29 @@
 				</div>
 				{% endif %}
 			
-
 			<div class="section">
+				{% if skill %}
 				<div class="skills_interest">
 					<div class="skills">
 						<ul>
-							<li><h4 class="section__title">SKILLS</h4></li>
-							<li>Python</li>
-							<li>Django</li>
+							<li><h4 class="section__title">skills</li>
+							{% for skill in skills%}
+							<li>{{skill.name}}</li>
+							{% endfor %}
 						</ul>
 					</div>
+				{% endif %}
+
+				{% if interest %}
 							
 					<div class="interest">
 						<ul>
 							<li><h4 class="section__title">INTERESTS</h4></li>
-							<li>Music</li>
-							<li>Football</li>
+							<li>{{</li>
 						</ul>
 					</div>
 				</div> 
+				{% endif %}
 			</div>
 			<div class="name">
 				<p>References available upon request.</p>
